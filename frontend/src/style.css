@@ -38,3 +38,29 @@ img {
   border: 1px solid rgb(204, 204, 243);
   color: rgb(139, 139, 234);
 }
+a {
+  text-decoration: none;
+}
+.bookform {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+input {
+  width: 250px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.formButton {
+  border: none;
+  padding: 10px;
+  background-color: rgb(133, 124, 216);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.formButton:active {
+  transform: translateY(-1px);
+}
