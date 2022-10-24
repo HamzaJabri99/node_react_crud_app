@@ -21,11 +21,19 @@ app.get("/books", (req, res) => {
   });
 });
 app.post("/books", (req, res) => {
-  const q = "insert into books (`title`,`description`,`cover`) values (?)";
-  const values = [req.body.title, req.body.description, req.body.cover];
+  const q =
+    "INSERT INTO books(`title`, `description`, `price`, `cover`) VALUES (?)";
+
+  const values = [
+    req.body.title,
+    req.body.description,
+    req.body.price,
+    req.body.cover,
+  ];
+
   db.query(q, [values], (err, data) => {
-    if (err) return res.json(err);
-    return res.json("Book Has been created successfully");
+    if (err) return res.send(err);
+    return res.json(data);
   });
 });
 app.listen(8800, () => {
