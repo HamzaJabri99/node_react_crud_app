@@ -1,7 +1,39 @@
-import React from "react";
-
-const books = () => {
-  return <div>books</div>;
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+const Books = () => {
+  const [books, setBooks] = useState([]);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const res = await axios.get("http://localhost:8800/books");
+        setBooks(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchBooks();
+  }, []);
+  return (
+    <div>
+      <h1>Node Books Shop</h1>
+      <div className="books">
+        {books.map((item) => {
+          return (
+            <div className="book" key={item.id}>
+              {item.cover && <img src={item.cover} alt="" />}
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+              <span>{item.price}</span>
+            </div>
+          );
+        })}
+      </div>
+      <button>
+        <Link to="/add">Add new book</Link>
+      </button>
+    </div>
+  );
 };
 
-export default books;
+export default Books;
